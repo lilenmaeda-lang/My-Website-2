@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Session</title>
+
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- SOCIAL ICONS (Font Awesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #fff;
+      color: #000;
+    }
+
+    .wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 24px 110px;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .back {
+      display: inline-block;
+      text-decoration: none;
+      color: #000;
+      border: 1px solid #000;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 500;
+      background: #fff;
+    }
+
+    h1 {
+      font-family: "Merriweather", serif;
+      font-size: 40px;
+      margin: 14px 0 24px;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: start;
+    }
+
+    @media (max-width: 1000px) {
+      .grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+    }
+
+    .card {
+      border-radius: 14px;
+      overflow: hidden;
+      background: #f2f2f2;
+      box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+      cursor: zoom-in;
+    }
+
+    .card:hover img {
+      transform: scale(1.01);
+      opacity: 0.95;
+    }
+
+    .err {
+      border: 1px solid #000;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-top: 18px;
+      opacity: 0.9;
+      line-height: 1.4;
+      font-size: 14px;
+    }
+
+    code {
+      background: #f3f3f3;
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #eee;
+      padding: 18px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      font-family: "Poppins", sans-serif;
+      font-size: 16px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 999;
+    }
+
+    .bottom-nav.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .bottom-nav a {
+      text-decoration: none;
+      color: #111;
+      font-weight: 300;
+      transition: opacity 0.2s ease;
+    }
+
+    .bottom-nav a:hover {
+      opacity: 0.6;
+    }
+
+    .bottom-social {
+      display: flex;
+      gap: 18px;
+      margin-left: 30px;
+    }
+
+    .bottom-social a {
+      font-size: 18px;
+      color: #111;
+      transition: opacity 0.2s ease;
+    }
+
+    .bottom-social a:hover {
+      opacity: 0.6;
+    }
+
+    @media (max-width: 900px) {
+      .bottom-nav {
+        gap: 22px;
+        flex-wrap: wrap;
+        padding: 14px 12px;
+        text-align: center;
+      }
+
+      .bottom-social {
+        margin-left: 0;
+      }
+    }
+
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 5000;
+    }
+
+    .lightbox.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 94vw;
+      max-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox img {
+      max-width: 94vw;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0px 16px 40px rgba(0,0,0,0.35);
+      background: #111;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      width: 42px;
+      height: 42px;
+      border: none;
+      border-radius: 999px;
+      background: #fff;
+      color: #111;
+      font-size: 22px;
+      cursor: pointer;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.25);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar" id="topBar">
+      <a class="back" href="../../../Modeling.html">← Back to Modeling</a>
+      <a class="back" href="Sessions.html">All Sessions</a>
+    </div>
+
+    <h1 id="title">Session</h1>
+
+    <div class="grid" id="grid"></div>
+
+    <div class="err" id="errBox" style="display:none;"></div>
+  </div>
+
+  <div class="bottom-nav" id="bottomNav">
+    <a href="../../../index.html">Home</a>
+    <a href="../../../Acting.html">Acting</a>
+    <a href="../../../Modeling.html">Modeling</a>
+    <a href="../../../creative.html">Creative</a>
+    <a href="../../../about.html">About</a>
+
+    <div class="bottom-social">
+      <a href="https://www.instagram.com/lilen_maeda" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.youtube.com/@LilenMusic" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.tiktok.com/@watashiwalilen" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Close">×</button>
+      <img id="lightboxImg" src="" alt="">
+    </div>
+  </div>
+
+  <script src="Sessions-data.js"></script>
+
+  <script>
+    const titleEl = document.getElementById("title");
+    const grid = document.getElementById("grid");
+    const errBox = document.getElementById("errBox");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightboxImg");
+    const lightboxClose = document.getElementById("lightboxClose");
+
+    function getParam(key) {
+      const url = new URL(window.location.href);
+      return url.searchParams.get(key);
+    }
+
+    function showError(html) {
+      errBox.style.display = "block";
+      errBox.innerHTML = html;
+    }
+
+    function openLightbox(src, alt) {
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || "";
+      lightbox.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("show");
+      lightboxImg.src = "";
+      lightboxImg.alt = "";
+      document.body.style.overflow = "";
+    }
+
+    function build() {
+      const iRaw = getParam("i");
+      const i = Number(iRaw);
+
+      if (!Array.isArray(window.SESSIONS)) {
+        showError(`Sessions-data.js did not load.<br>
+          Make sure <code>Sessions-data.js</code> is in the same folder as <code>session.html</code>.`);
+        return;
+      }
+
+      if (!Number.isInteger(i) || i < 0 || i >= window.SESSIONS.length) {
+        titleEl.textContent = "Session not found";
+        showError(`Bad link. I expected <code>session.html?i=0</code> etc.<br>Got: <code>i=${String(iRaw)}</code>`);
+        return;
+      }
+
+      const session = window.SESSIONS[i];
+      titleEl.textContent = session.title;
+
+      const okExt = [".jpg", ".jpeg", ".png", ".webp", ".gif"];
+      const cleaned = (session.images || []).filter(name => {
+        const lower = name.toLowerCase();
+        return okExt.some(ext => lower.endsWith(ext));
+      });
+
+      grid.innerHTML = "";
+
+      if (cleaned.length === 0) {
+        showError(`This session has no valid image files.<br>
+          Check <code>images</code> inside <code>Sessions-data.js</code>.`);
+        return;
+      }
+
+      cleaned.forEach((imgName) => {
+        const src = `${session.folder}/${imgName}`;
+
+        const card = document.createElement("div");
+        card.className = "card";
+
+        const img = document.createElement("img");
+        img.src = src;
+        img.alt = session.title;
+        img.loading = "lazy";
+
+        img.addEventListener("error", () => {
+          showError(`An image failed to load:<br><code>${src}</code><br>
+          This means the folder name or file name doesn’t match exactly.`);
+        });
+
+        img.addEventListener("click", () => {
+          openLightbox(src, session.title);
+        });
+
+        card.appendChild(img);
+        grid.appendChild(card);
+      });
+    }
+
+    build();
+
+    lightboxClose.addEventListener("click", closeLightbox);
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        closeLightbox();
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") {
+        closeLightbox();
+      }
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const topBar = document.getElementById("topBar");
+      const bottomNav = document.getElementById("bottomNav");
+
+      if (!topBar || !bottomNav) {
+        console.warn("Missing #topBar or #bottomNav in the HTML.");
+        return;
+      }
+
+      function toggleBottomNav() {
+        const bottom = topBar.getBoundingClientRect().bottom;
+        if (bottom <= 0) {
+          bottomNav.classList.add("show");
+        } else {
+          bottomNav.classList.remove("show");
+        }
+      }
+
+      window.addEventListener("scroll", toggleBottomNav);
+      window.addEventListener("load", toggleBottomNav);
+      toggleBottomNav();
+    });
+  </script>
+</body>
+</html>
