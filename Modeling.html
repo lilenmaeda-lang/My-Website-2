@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lilen Maeda - Modeling</title>
+
+<!-- GOOGLE FONTS -->
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- SOCIAL ICONS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #fff;
+  color: #000;
+}
+
+/* ---------- NAV ---------- */
+
+.main-nav {
+  width: 100%;
+  padding: 32px 60px;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-name {
+  font-family: "Merriweather", serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: #111;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-left: 36px;
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #222;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 0%;
+  height: 1px;
+  background: #000;
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* ---------- SOCIAL ICONS ---------- */
+
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: 40px;
+}
+
+.nav-social a {
+  font-size: 18px;
+  color: #111;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.nav-social a:hover {
+  opacity: 0.6;
+  transform: translateY(-2px);
+}
+
+/* ---------- MOBILE NAV ---------- */
+
+@media (max-width: 900px) {
+  .main-nav {
+    padding: 24px;
+  }
+
+  .nav-inner {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .nav-links {
+    gap: 22px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-links a {
+    margin-left: 0;
+    font-size: 16px;
+  }
+
+  .nav-name {
+    font-size: 28px;
+  }
+
+  .nav-social {
+    margin-left: 0;
+  }
+}
+
+/* ---------- PORTFOLIO ---------- */
+
+.portfolio {
+  margin-top: 60px;
+  padding: 0 40px 160px 40px;
+  box-sizing: border-box;
+}
+
+.portfolio-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  .portfolio {
+    padding: 0 20px 180px 20px;
+  }
+
+  .portfolio-inner {
+    max-width: 100%;
+  }
+}
+
+/* ---------- MASONRY GRID ---------- */
+
+.grid {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+}
+
+.grid-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  min-width: 0;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    gap: 18px;
+  }
+
+  .grid-col {
+    gap: 18px;
+  }
+}
+
+@media (max-width: 700px) {
+  .grid {
+    flex-direction: column;
+  }
+
+  .grid-col {
+    width: 100%;
+  }
+}
+
+.grid-item {
+  position: relative;
+}
+
+.grid-item a {
+  display: block;
+  text-decoration: none;
+}
+
+.grid-item img {
+  width: 100%;
+  display: block;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  background: #f2f2f2;
+}
+
+.grid-item:hover img {
+  transform: scale(1.01);
+  opacity: 0.95;
+}
+
+/* ---------- BOTTOM NAV ---------- */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 18px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.bottom-nav.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bottom-nav a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 300;
+  transition: opacity 0.2s ease;
+}
+
+.bottom-nav a:hover {
+  opacity: 0.6;
+}
+
+.bottom-social {
+  display: flex;
+  gap: 18px;
+  margin-left: 30px;
+}
+
+.bottom-social a {
+  font-size: 18px;
+  color: #111;
+  transition: opacity 0.2s ease;
+}
+
+.bottom-social a:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  .bottom-nav {
+    gap: 22px;
+    flex-wrap: wrap;
+    padding: 14px 12px;
+    text-align: center;
+  }
+
+  .bottom-social {
+    margin-left: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<nav class="main-nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-name">Lilen Maeda</a>
+
+    <div style="display:flex; align-items:center;">
+      <div class="nav-links">
+        <a href="Acting.html">Acting</a>
+        <a href="Modeling.html">Modeling</a>
+        <a href="creative.html">Creative</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div class="nav-social">
+        <a href="https://www.instagram.com/lilen_maeda" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://www.youtube.com/@LilenMusic" target="_blank" rel="noopener">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="https://www.tiktok.com/@watashiwalilen" target="_blank" rel="noopener">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="portfolio">
+  <div class="portfolio-inner">
+    <div class="grid" id="modeling-grid">
+      <div class="grid-col" id="col-1"></div>
+      <div class="grid-col" id="col-2"></div>
+      <div class="grid-col" id="col-3"></div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=0">
+          <img src="Assets/Modeling/Covers/Kiril Cover.jpg" alt="Kiril">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=1">
+          <img src="Assets/Modeling/Covers/Chris Cover.jpg" alt="Chris">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=2">
+          <img src="Assets/Modeling/Covers/Oscar Cover.jpg" alt="Oscar">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=3">
+          <img src="Assets/Modeling/Covers/Sasha Cover.jpg" alt="Sasha">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=4">
+          <img src="Assets/Modeling/Covers/Hamid Cover.jpg" alt="Hamid">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=5">
+          <img src="Assets/Modeling/Covers/Saho  Cover.JPEG" alt="Saho">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=6">
+          <img src="Assets/Modeling/Covers/Frank Cover.JPG" alt="Frank">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=7">
+          <img src="Assets/Modeling/Covers/Tigi Cover.jpg" alt="Tigi">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=8">
+          <img src="Assets/Modeling/Covers/Johny Meza Cover.jpg" alt="Johny Meza">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=9">
+          <img src="Assets/Modeling/Covers/Chida Cover.jpg" alt="Chida Beach">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=10">
+          <img src="Assets/Modeling/Covers/Maxwell Cover.jpg" alt="Maxwell">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=11">
+          <img src="Assets/Modeling/Covers/Jaqueline Cover.jpg" alt="Jaqueline">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=12">
+          <img src="Assets/Modeling/Covers/Valen Cover.jpg" alt="Valen">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=13">
+          <img src="Assets/Modeling/Covers/Efimera Cover.jpg" alt="Efimera">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=14">
+          <img src="Assets/Modeling/Covers/Ruben Cover.jpg" alt="Ruben">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=15">
+          <img src="Assets/Modeling/Covers/Dearrieta Cover.jpg" alt="Dearrieta">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=16">
+          <img src="Assets/Modeling/Covers/Pe Cover.jpg" alt="Pe">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=17">
+          <img src="Assets/Modeling/Covers/Srta Alegria Cover.jpg" alt="Srta Alegria">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=18">
+          <img src="Assets/Modeling/Covers/Sabrina Ines Cover.jpg" alt="Sabrina Ines">
+        </a>
+      </div>
+
+      <div class="grid-item">
+        <a href="Assets/Modeling/Sessions/session.html?i=19">
+          <img src="Assets/Modeling/Covers/Guillermina Romero Cover.jpg" alt="Guillermina Romero">
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="bottom-nav" id="bottomNav">
+  <a href="index.html">Home</a>
+  <a href="Acting.html">Acting</a>
+  <a href="Modeling.html">Modeling</a>
+  <a href="creative.html">Creative</a>
+  <a href="about.html">About</a>
+
+  <div class="bottom-social">
+    <a href="https://www.instagram.com/lilen_maeda" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.youtube.com/@LilenMusic" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.tiktok.com/@watashiwalilen" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.getElementById("modeling-grid");
+  const col1 = document.getElementById("col-1");
+  const col2 = document.getElementById("col-2");
+  const col3 = document.getElementById("col-3");
+
+  const items = Array.from(grid.querySelectorAll(".grid-item"));
+  const images = Array.from(grid.querySelectorAll(".grid-item img"));
+
+  function getColumnHeight(column) {
+    return column.offsetHeight;
+  }
+
+  function getShortestColumn(columns) {
+    let shortest = columns[0];
+
+    for (let i = 1; i < columns.length; i++) {
+      if (getColumnHeight(columns[i]) < getColumnHeight(shortest)) {
+        shortest = columns[i];
+      }
+    }
+
+    return shortest;
+  }
+
+  function getImageShapeScore(item) {
+    const img = item.querySelector("img");
+
+    if (!img || !img.naturalWidth || !img.naturalHeight) {
+      return 1;
+    }
+
+    const ratio = img.naturalHeight / img.naturalWidth;
+
+    if (ratio >= 1.2) {
+      return 3; // vertical
+    }
+
+    if (ratio >= 0.9) {
+      return 2; // casi cuadrada
+    }
+
+    return 1; // horizontal
+  }
+
+  function chooseBestItemForColumn(pool, targetColumn, columns) {
+    let bestIndex = 0;
+    let bestScore = -Infinity;
+
+    const columnHeights = columns.map(col => getColumnHeight(col));
+    const targetHeight = getColumnHeight(targetColumn);
+    const tallestHeight = Math.max(...columnHeights);
+    const gapToTallest = tallestHeight - targetHeight;
+
+    for (let i = 0; i < pool.length; i++) {
+      const item = pool[i];
+      const shapeScore = getImageShapeScore(item);
+
+      let score = 0;
+
+      // favorece verticales cuando la columna está más baja
+      score += shapeScore * Math.max(gapToTallest, 1);
+
+      // favorece conservar cierto orden
+      score -= i * 1.25;
+
+      // pequeño bonus a la primera opción si no hay gran diferencia
+      if (i === 0) {
+        score += 0.8;
+      }
+
+      if (score > bestScore) {
+        bestScore = score;
+        bestIndex = i;
+      }
+    }
+
+    return bestIndex;
+  }
+
+  function distributeItems() {
+    col1.innerHTML = "";
+    col2.innerHTML = "";
+    col3.innerHTML = "";
+
+    const remaining = [...items];
+
+    if (window.innerWidth <= 700) {
+      remaining.forEach((item) => {
+        col1.appendChild(item);
+      });
+      return;
+    }
+
+    if (window.innerWidth <= 980) {
+      const columns = [col1, col2];
+      const lookahead = 3;
+
+      while (remaining.length > 0) {
+        const shortest = getShortestColumn(columns);
+        const pool = remaining.slice(0, Math.min(lookahead, remaining.length));
+        const bestIndex = chooseBestItemForColumn(pool, shortest, columns);
+        const chosenItem = remaining.splice(bestIndex, 1)[0];
+        shortest.appendChild(chosenItem);
+      }
+
+      return;
+    }
+
+    const columns = [col1, col2, col3];
+    const lookahead = 4;
+
+    while (remaining.length > 0) {
+      const shortest = getShortestColumn(columns);
+      const pool = remaining.slice(0, Math.min(lookahead, remaining.length));
+      const bestIndex = chooseBestItemForColumn(pool, shortest, columns);
+      const chosenItem = remaining.splice(bestIndex, 1)[0];
+      shortest.appendChild(chosenItem);
+    }
+  }
+
+  function waitForImagesThenDistribute() {
+    let loadedCount = 0;
+
+    if (images.length === 0) {
+      distributeItems();
+      return;
+    }
+
+    images.forEach((img) => {
+      if (img.complete) {
+        loadedCount++;
+        if (loadedCount === images.length) {
+          distributeItems();
+        }
+      } else {
+        img.addEventListener("load", () => {
+          loadedCount++;
+          if (loadedCount === images.length) {
+            distributeItems();
+          }
+        });
+
+        img.addEventListener("error", () => {
+          loadedCount++;
+          if (loadedCount === images.length) {
+            distributeItems();
+          }
+        });
+      }
+    });
+  }
+
+  waitForImagesThenDistribute();
+
+  let resizeTimeout;
+
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      distributeItems();
+    }, 150);
+  });
+});
+</script>
+
+<script>
+const mainNav = document.getElementById("mainNav");
+const bottomNav = document.getElementById("bottomNav");
+
+function toggleBottomNav() {
+  const navBottom = mainNav.getBoundingClientRect().bottom;
+  if (navBottom <= 0) {
+    bottomNav.classList.add("show");
+  } else {
+    bottomNav.classList.remove("show");
+  }
+}
+
+window.addEventListener("scroll", toggleBottomNav);
+window.addEventListener("load", toggleBottomNav);
+toggleBottomNav();
+</script>
+
+</body>
+</html>

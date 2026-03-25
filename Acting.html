@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lilen Maeda - Acting</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: #fff;
+  color: #000;
+}
+
+/* ---------- TOP NAV ---------- */
+
+.main-nav {
+  width: 100%;
+  padding: 32px 60px;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-name {
+  font-family: "Merriweather", serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: #111;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-left: 36px;
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #222;
+}
+
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: 40px;
+}
+
+.nav-social a {
+  font-size: 18px;
+  color: #111;
+  transition: opacity 0.2s ease;
+}
+
+.nav-social a:hover {
+  opacity: 0.6;
+}
+
+/* ---------- PORTFOLIO GRID ---------- */
+
+.portfolio {
+  margin-top: 60px;
+  padding: 0 60px 140px 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 10px;
+  grid-auto-flow: dense;
+  gap: 30px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 20px;
+  }
+
+  .portfolio {
+    padding: 0 20px 160px 20px;
+  }
+
+  .main-nav {
+    padding: 20px;
+  }
+
+  .nav-inner {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+/* ---------- VIDEO BLOCK ---------- */
+
+.video-container {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0px 6px 18px rgba(0,0,0,0.12);
+  background: #000;
+  position: relative;
+  align-self: start;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #000;
+}
+
+.soundToggle {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  padding: 6px 12px;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+}
+
+/* ---------- BOTTOM NAV ---------- */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 18px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 999;
+}
+
+.bottom-nav.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.bottom-nav a {
+  text-decoration: none;
+  color: #111;
+  font-weight: 300;
+  transition: opacity 0.2s ease;
+}
+
+.bottom-nav a:hover {
+  opacity: 0.6;
+}
+
+.bottom-social {
+  display: flex;
+  gap: 18px;
+  margin-left: 30px;
+}
+
+.bottom-social a {
+  font-size: 18px;
+  color: #111;
+  transition: opacity 0.2s ease;
+}
+
+.bottom-social a:hover {
+  opacity: 0.6;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="main-nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-name">Lilen Maeda</a>
+
+    <div style="display:flex; align-items:center;">
+      <div class="nav-links">
+        <a href="Acting.html">Acting</a>
+        <a href="Modeling.html">Modeling</a>
+        <a href="creative.html">Creative</a>
+        <a href="about.html">About</a>
+      </div>
+
+      <div class="nav-social">
+        <a href="https://www.instagram.com/lilen_maeda" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/YOURCHANNEL" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@watashiwalilen" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<section class="portfolio">
+  <div class="grid" id="actingGrid">
+
+    <div class="video-container">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="Gatordade No ORdinary Athletes.mp4" type="video/mp4">
+      </video>
+      <button class="soundToggle" type="button">🔊</button>
+    </div>
+
+    <div class="video-container">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="Skating.mp4" type="video/mp4">
+      </video>
+      <button class="soundToggle" type="button">🔊</button>
+    </div>
+
+    <div class="video-container">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="Samsung shortcut.mp4" type="video/mp4">
+      </video>
+      <button class="soundToggle" type="button">🔊</button>
+    </div>
+
+    <div class="video-container">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="Biking Srta Alegria.mp4" type="video/mp4">
+      </video>
+      <button class="soundToggle" type="button">🔊</button>
+    </div>
+
+    <div class="video-container">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="Modeling Srta Alegria.mp4" type="video/mp4">
+      </video>
+      <button class="soundToggle" type="button">🔊</button>
+    </div>
+
+     <div class="video-container">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="Dearrieta Commertial.mpg" type="video/mp4">
+      </video>
+      <button class="soundToggle" type="button">🔊</button>
+    </div>
+
+
+    <div class="video-container">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="Lejana Shortcut.mov" type="video/mp4">
+      </video>
+      <button class="soundToggle" type="button">🔊</button>
+    </div>
+
+    <div class="video-container">
+      <video autoplay muted loop playsinline preload="metadata">
+        <source src="Efimera Floral - Nacida de la naturaleza.mp4" type="video/mp4">
+      </video>
+      <button class="soundToggle" type="button">🔊</button>
+    </div>
+
+  </div>
+</section>
+
+<div class="bottom-nav" id="bottomNav">
+  <a href="index.html">Home</a>
+  <a href="Acting.html">Acting</a>
+  <a href="Modeling.html">Modeling</a>
+  <a href="creative.html">Creative</a>
+  <a href="about.html">About</a>
+
+  <div class="bottom-social">
+    <a href="https://www.instagram.com/lilen_maeda" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+    <a href="https://www.youtube.com/YOURCHANNEL" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+    <a href="https://www.tiktok.com/@watashiwalilen" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+  </div>
+</div>
+
+<script>
+// ---------- SOUND TOGGLE ----------
+document.querySelectorAll('.video-container').forEach(container => {
+  const video = container.querySelector('video');
+  const button = container.querySelector('.soundToggle');
+  if (!video || !button) return;
+
+  button.addEventListener('click', () => {
+    video.muted = !video.muted;
+    button.textContent = video.muted ? '🔊' : '🔇';
+  });
+});
+
+// ---------- SHOW BOTTOM NAV WHEN TOP NAV SCROLLS AWAY ----------
+const mainNav = document.getElementById("mainNav");
+const bottomNav = document.getElementById("bottomNav");
+
+function toggleBottomNav() {
+  const navBottom = mainNav.getBoundingClientRect().bottom;
+  if (navBottom <= 0) bottomNav.classList.add("show");
+  else bottomNav.classList.remove("show");
+}
+
+window.addEventListener("scroll", toggleBottomNav);
+window.addEventListener("load", toggleBottomNav);
+
+// ---------- MASONRY-STYLE VIDEO LAYOUT ----------
+const actingGrid = document.getElementById("actingGrid");
+
+function resizeVideoGridItem(item) {
+  if (window.innerWidth <= 900) {
+    item.style.gridRowEnd = "auto";
+    return;
+  }
+
+  const gridStyles = window.getComputedStyle(actingGrid);
+  const rowHeight = parseFloat(gridStyles.getPropertyValue("grid-auto-rows"));
+  const rowGap = parseFloat(gridStyles.getPropertyValue("gap"));
+
+  const itemHeight = item.getBoundingClientRect().height;
+  const rowSpan = Math.ceil((itemHeight + rowGap) / (rowHeight + rowGap));
+
+  item.style.gridRowEnd = `span ${rowSpan}`;
+}
+
+function layoutVideoGrid() {
+  const items = actingGrid.querySelectorAll(".video-container");
+  items.forEach((item) => resizeVideoGridItem(item));
+}
+
+function waitForVideosAndLayout() {
+  const videos = actingGrid.querySelectorAll("video");
+  let readyCount = 0;
+
+  if (videos.length === 0) {
+    layoutVideoGrid();
+    return;
+  }
+
+  function markReady() {
+    readyCount += 1;
+    if (readyCount >= videos.length) {
+      layoutVideoGrid();
+    }
+  }
+
+  videos.forEach((video) => {
+    if (video.readyState >= 1) {
+      markReady();
+    } else {
+      video.addEventListener("loadedmetadata", markReady, { once: true });
+      video.addEventListener("error", markReady, { once: true });
+    }
+
+    video.addEventListener("loadeddata", () => {
+      layoutVideoGrid();
+    });
+
+    video.addEventListener("playing", () => {
+      layoutVideoGrid();
+    });
+  });
+}
+
+waitForVideosAndLayout();
+
+let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    layoutVideoGrid();
+  }, 150);
+});
+
+window.addEventListener("load", () => {
+  layoutVideoGrid();
+});
+</script>
+
+</body>
+</html>
