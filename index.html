@@ -20,7 +20,7 @@ body{
 }
 
 .home{
-  height:100vh;
+  height:90vh;
   display:flex;
   flex-direction:column;
 }
@@ -54,8 +54,12 @@ body{
   display:grid;
   grid-template-columns:1fr 1fr;
   grid-template-rows:1fr 1fr;
-  gap:16px;
-  padding:60px;
+  gap:30px;
+
+  padding: 40px 60px 40px 60px; /* SAME top/bottom */
+
+  height: calc(100vh - 120px); /* subtract nav height */
+  box-sizing: border-box;
 }
 
 .tile{
@@ -110,6 +114,62 @@ body{
   color:rgba(255,255,255,0.85);
 }
 
+.main-nav {
+  width: 100%;
+  padding: 32px 60px 0 60px;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-name {
+  font-family: "Merriweather", serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: #111;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-left: 36px;
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #222;
+}
+
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: 40px;
+}
+
+.nav-social a {
+  font-size: 18px;
+  color: #111;
+  transition: opacity 0.2s ease;
+}
+
+.nav-social a:hover {
+  opacity: 0.6;
+}
+
 /* ---------- MOBILE ---------- */
 
 @media (max-width:900px){
@@ -133,6 +193,62 @@ body{
     top:18px;
   }
 
+  .main-nav {
+  width: 100%;
+  padding: 32px 60px 0 60px;
+  box-sizing: border-box;
+  background: #fff;
+  position: relative;
+  z-index: 1000;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-name {
+  font-family: "Merriweather", serif;
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  color: #111;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links a {
+  margin-left: 36px;
+  font-weight: 300;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #222;
+}
+
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-left: 40px;
+}
+
+.nav-social a {
+  font-size: 18px;
+  color: #111;
+  transition: opacity 0.2s ease;
+}
+
+.nav-social a:hover {
+  opacity: 0.6;
+}
+
 }
 
 </style>
@@ -140,25 +256,21 @@ body{
 
 <body>
 
+   <nav class="main-nav" id="mainNav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-name">Lilen Maeda</a>
+
+      <div class="nav-social">
+        <a href="https://www.instagram.com/lilen_maeda" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://www.youtube.com/YOURCHANNEL" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.tiktok.com/@watashiwalilen" target="_blank" rel="noopener"><i class="fa-brands fa-tiktok"></i></a>
+      </div>
+    </div>
+  </div>
+</nav>
+
 <div class="home">
 
-<!-- SOCIAL ICONS -->
-
-<div class="home-social">
-
-<a href="https://www.instagram.com/lilen_maeda" target="_blank" rel="noopener">
-<i class="fa-brands fa-instagram"></i>
-</a>
-
-<a href="https://www.youtube.com/@LilenMusic" target="_blank" rel="noopener">
-<i class="fa-brands fa-youtube"></i>
-</a>
-
-<a href="https://www.tiktok.com/@watashiwalilen" target="_blank" rel="noopener">
-<i class="fa-brands fa-tiktok"></i>
-</a>
-
-</div>
 
 <section class="tiles">
 
@@ -167,7 +279,7 @@ body{
 <div class="overlay"></div>
 <div class="label">
 <h2>Acting</h2>
-<span>View</span>
+
 </div>
 </a>
 
@@ -176,7 +288,7 @@ body{
 <div class="overlay"></div>
 <div class="label">
 <h2>Modeling</h2>
-<span>View</span>
+
 </div>
 </a>
 
@@ -185,16 +297,16 @@ body{
 <div class="overlay"></div>
 <div class="label">
 <h2>Creative</h2>
-<span>View</span>
+
 </div>
 </a>
 
 <a class="tile" href="about.html">
-<img src="Jaqueline (4).jpg" alt="">
+<img src="About.jpg" alt="">
 <div class="overlay"></div>
 <div class="label">
 <h2>About</h2>
-<span>View</span>
+
 </div>
 </a>
 
